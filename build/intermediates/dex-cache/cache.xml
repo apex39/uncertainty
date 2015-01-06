@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/mateusz/Development/Projects/Fizyka/app/lib/commons-lang3-3.3.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="659861b4acde07a0527211e40d256119face1d15">
+        <dex dex="/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/pre-dexed/debug/commons-lang3-3.3.2-7f01e491847797faa2dab7ee22c2db18b96abe9a.jar" />
+    </item>
+    <item
+        jar="/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/pre-dexed/debug/classes-f8422626894ebb5b80808b07d4badc2f1d2ab850.jar" />
+    </item>
+    <item
+        jar="/home/mateusz/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-1ea59a655f692fd2710b3049f0e0f3938df2d9a8.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,46 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+	<EditText
+	    android:id="@+id/wejscie"
+	    android:hint="Dane pomiarowe..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned|numberDecimal"
+        android:completionThreshold="1"/>
+
+	<ListView
+	    android:id="@+id/lista"
+	    android:layout_width="match_parent"
+	    android:layout_height="200dp"
+	    android:footerDividersEnabled="false" />
+
+	<EditText
+	    android:id="@+id/wejscie_B"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="top"
+	    android:hint="Niedokładość przyrządu..."
+	    android:inputType="numberDecimal|numberSigned"/>
+	
+	<Button
+	    android:id="@+id/przycisk"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Oblicz"
+	    android:onClick="sprawdz_zawartosc"
+	    android:gravity="center"/>
+
+	<TextView
+	    android:id="@+id/texttext"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:gravity="right"
+	    android:text="Mateusz Bąk mateuszbak3@gmail.com"
+	    android:textSize="13sp"/>
+</LinearLayout>

@@ -1,0 +1,68 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<TableLayout     
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:gravity="center"
+            android:text="x"
+            android:textStyle="bold" >
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="ε=x-x̄"
+            android:textStyle="bold">
+        </TextView>
+
+        <TextView
+            android:gravity="center"
+            android:text="ε²"
+            android:textStyle="bold">
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/wartosci_x"
+            android:gravity="center"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/wartosci_epsilon"
+            android:gravity="center"/>
+
+        
+
+        <TextView
+            android:id="@+id/wartosci_epsilon_pow"
+            android:gravity="center"
+            >
+        </TextView>
+    </TableRow>
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+       <TextView
+            android:id="@+id/wyniki_finalne"
+            android:gravity="center"  
+            />
+    </TableRow>
+</TableLayout>
+</ScrollView>

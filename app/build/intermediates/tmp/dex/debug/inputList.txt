@@ -1,0 +1,4 @@
+/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/classes/debug
+/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/pre-dexed/debug/classes-f8422626894ebb5b80808b07d4badc2f1d2ab850.jar
+/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/pre-dexed/debug/commons-lang3-3.3.2-7f01e491847797faa2dab7ee22c2db18b96abe9a.jar
+/home/mateusz/Development/Projects/Fizyka/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-1ea59a655f692fd2710b3049f0e0f3938df2d9a8.jar
