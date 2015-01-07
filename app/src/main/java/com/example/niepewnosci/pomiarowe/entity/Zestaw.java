@@ -21,8 +21,13 @@ public class Zestaw implements Serializable, Runnable{
     float bUncertainty;
     float cUncertainty;
 
-    public String getDeviceUncertainty() {
-        return String.valueOf(deviceUncertainty);
+
+    public List<Float> getDane() {
+        return dane;
+    }
+
+    public Float getDeviceUncertainty() {
+        return deviceUncertainty;
     }
 
     public String getDifferencesFromAverage() {

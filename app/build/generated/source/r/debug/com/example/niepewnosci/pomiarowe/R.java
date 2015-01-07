@@ -832,10 +832,12 @@ containing a value of this type.
         public static final int action_save=0x7f08004a;
         public static final int activity_chooser_view_content=0x7f080025;
         public static final int always=0x7f080013;
+        public static final int bEditText=0x7f08003e;
         public static final int beginning=0x7f08000f;
         public static final int checkbox=0x7f08002d;
         public static final int collapseActionView=0x7f080014;
         public static final int container=0x7f080041;
+        public static final int dataEditText=0x7f08003c;
         public static final int default_activity_button=0x7f080028;
         public static final int dialog=0x7f080018;
         public static final int disableHome=0x7f080009;
@@ -888,8 +890,6 @@ containing a value of this type.
         public static final int wartosci_epsilon=0x7f080044;
         public static final int wartosci_epsilon_pow=0x7f080045;
         public static final int wartosci_x=0x7f080043;
-        public static final int wejscie=0x7f08003c;
-        public static final int wejscie_B=0x7f08003e;
         public static final int withText=0x7f080017;
         public static final int wyniki_finalne=0x7f080046;
     }
@@ -2059,7 +2059,7 @@ containing a value of this type.
          */
         public static final int[] MenuView = {
             0x010100ae, 0x0101012c, 0x0101012d, 0x0101012e,
-            0x0101012f, 0x01010130, 0x01010131, 0x01010435
+            0x0101012f, 0x01010130, 0x01010131, 0x0101052f
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#headerBackground}

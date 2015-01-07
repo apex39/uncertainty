@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 	<EditText
-	    android:id="@+id/wejscie"
+	    android:id="@+id/dataEditText"
 	    android:hint="Dane pomiarowe..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
 	    android:footerDividersEnabled="false" />
 
 	<EditText
-	    android:id="@+id/wejscie_B"
+	    android:id="@+id/bEditText"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:gravity="top"
@@ -32,7 +32,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="Oblicz"
-	    android:onClick="sprawdz_zawartosc"
+	    android:onClick="sendZestaw"
 	    android:gravity="center"/>
 
 	<TextView

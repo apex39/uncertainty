@@ -1,14 +1,10 @@
 package com.example.niepewnosci.pomiarowe;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,76 +17,91 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.example.niepewnosci.pomiarowe.entity.Zestaw;
 import com.example.niepewnosci.pomiarowe.files.FileRead;
-import com.example.niepewnosci.pomiarowe.files.FileSave;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ekran extends ActionBarActivity {
 	List<Float> data = new ArrayList<Float>();
+    Float deviceUncertainty =0f;
     private MojAdapter adapter;
-
+    EditText dataEditText;
+    EditText bEditText;
     private Zestaw zestaw;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ekran);
-        final EditText actv= (EditText)findViewById(R.id.wejscie); 
-        instalujAdapter();
-       
-        actv.setOnEditorActionListener(new OnEditorActionListener() {                     
+
+        adapter = new MojAdapter(this, data);
+        ListView lista = (ListView)findViewById(R.id.lista);
+        lista.setAdapter(adapter);
+
+        dataEditText = (EditText)findViewById(R.id.dataEditText);
+        dataEditText.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event){
-                if(actionId == EditorInfo.IME_ACTION_DONE ) {
-            		data.add(Float.valueOf(actv.getText().toString()));
-            		adapter.notifyDataSetChanged();
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE && !TextUtils.isEmpty(v.getText().toString())) {
+                    data.add(Float.valueOf(v.getText().toString()));
+                    adapter.notifyDataSetChanged();
+                    v.setText(null);
                     return true;
-                	}
+                }
                 return false;
             }
-            	        
+
+        });
+        bEditText = (EditText)findViewById(R.id.bEditText);
+        bEditText.setOnEditorActionListener(new OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event){
+                if(actionId == EditorInfo.IME_ACTION_DONE && !TextUtils.isEmpty(v.getText().toString())) {
+                    deviceUncertainty= Float.valueOf(v.getText().toString());
+                    return false;
+                }
+                return false;
+            }
+
         });
     }
-    	        
 
-                
-    public void sprawdz_zawartosc(View view){
-    	/*EditText wejscie_B = (EditText) findViewById(R.id.wejscie_B);
-    	 String dane_wejscie_B = wejscie_B.getText().toString();*/
+    public boolean sprawdz_zawartosc(){
     	if(data.size() == 0){
     		AlertDialog alertDialog = new AlertDialog.Builder(
                     Ekran.this).create();
-    alertDialog.setTitle("Błąd");
-    alertDialog.setMessage("Wpisz dane pomiarowe.");
-    alertDialog.show();
-    	}
-    	else srednia();
-    }
-    public void usuwanie_elementu (View v){
-              Ziarenko element_do_usuniecia = (Ziarenko)v.getTag();
-              adapter.remove(element_do_usuniecia);
-        adapter.notifyDataSetChanged();
-    }
-                
-    private void instalujAdapter(){
-    	adapter = new MojAdapter(this, data);
-    	ListView lista = (ListView)findViewById(R.id.lista);
-    	lista.setAdapter(adapter);
-    }
-    public void srednia (){
-
-       EditText wejscie_B = (EditText) findViewById(R.id.wejscie_B);
-        String dane_wejscie_B = wejscie_B.getText().toString();
-        float deviceUncertainty;
-        if(dane_wejscie_B.length()<=0) {
-            deviceUncertainty=0;
-        } else {
-            deviceUncertainty = (float) Float.valueOf(dane_wejscie_B);
+            alertDialog.setTitle("Błąd");
+            alertDialog.setMessage("Wpisz dane pomiarowe");
+            alertDialog.show();
+            return false;
         }
+        return true;
+    }
 
+    public void usuwanie_elementu (View v){
 
-    Zestaw zestaw = new Zestaw(data);
-    zestaw.setDeviceUncertainty(deviceUncertainty);
-    Intent wysylka = new Intent(this,Wyniki.class);
-    wysylka.putExtra("Zestaw", zestaw);
-    startActivity(wysylka);}
+        Float itemDelete = adapter.getItem((int)v.getTag());
+        adapter.remove(itemDelete);
+        /*MojAdapter.ViewHolder holder = (MojAdapter.ViewHolder) v.getTag();
+        Float itemDelete = adapter.getItem((int)holder.element_position);*/
+        data.remove(itemDelete);
+
+        adapter.notifyDataSetChanged();
+        runOnUiThread(new Runnable() {
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void sendZestaw(View view){
+    if(sprawdz_zawartosc()) {
+        Zestaw zestaw = new Zestaw(data);
+        zestaw.setDeviceUncertainty(deviceUncertainty);
+        Intent wysylka = new Intent(this, Wyniki.class);
+        wysylka.putExtra("Zestaw", zestaw);
+        startActivity(wysylka);}
+    }
 
 
     @Override
@@ -122,10 +133,28 @@ public class Ekran extends ActionBarActivity {
         builder.setItems(fileList, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                fileRead.loadFile(which);
+                Zestaw receivedZestaw = fileRead.getZestawFile(which);
+                loadZestaw(receivedZestaw);
+                dialog.dismiss();
             }
         });
          AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void loadZestaw(Zestaw receivedZestaw) {
+
+        data = receivedZestaw.getDane();
+        deviceUncertainty = receivedZestaw.getDeviceUncertainty();
+
+        bEditText.setText(deviceUncertainty.toString());
+        adapter.clear();
+        adapter.addAll(data);
+        //adapter.notifyDataSetChanged();
+        runOnUiThread(new Runnable() {
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }
